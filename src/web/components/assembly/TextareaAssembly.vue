@@ -231,6 +231,11 @@ onMounted(() => {
     assemble();
   });
 
+  // Add Ctrl+M / Cmd+M keybinding to toggle line comments
+  editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyM, () => {
+    editor?.trigger("keyboard", "editor.action.commentLine", null);
+  });
+
   // Listen to content changes and update parent immediately
   editor.onDidChangeModelContent(() => {
     // document.app is the mounted root component (App.vue)
